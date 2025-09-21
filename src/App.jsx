@@ -11,6 +11,9 @@ import ShopPage from './pages/ShopPage.jsx';
 import Contact from './pages/Contact.jsx';
 import Category from './pages/Category.jsx';
 import ProductDetails from './pages/ProductDetails.jsx';
+
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import './index.css';
 
 export default function App() {
@@ -51,6 +54,18 @@ export default function App() {
           <Route path="/cart" element={<CartPage />} />
         </Routes>
         <Footer />
+        <ToastContainer
+          position="top-right"
+          autoClose={3000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="light"
+        />
       </Router>
     </CartProvider>
   );
