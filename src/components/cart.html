@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elegant Cart | Your Shopping Bag</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            color: white;
+            padding: 20px 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+        
+        .logo span {
+            color: #ffdd40;
+        }
+        
+        .cart-container {
+            display: flex;
+            gap: 30px;
+            margin: 40px 0;
+        }
+        
+        .cart-items {
+            flex: 7;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+        }
+        
+        .cart-summary {
+            flex: 3;
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            align-self: flex-start;
+        }
+        
+        .cart-header {
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            color: white;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .cart-title {
+            font-size: 22px;
+            font-weight: 600;
+        }
+        
+        .items-count {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 14px;
+        }
+        
+        .cart-items-list {
+            padding: 0;
+        }
+        
+        .cart-item {
+            display: flex;
+            padding: 25px;
+            border-bottom: 1px solid #f1f1f1;
+            transition: all 0.3s ease;
+        }
+        
+        .cart-item:hover {
+            background: #fafbff;
+        }
+        
+        .item-image {
+            width: 120px;
+            height: 120px;
+            border-radius: 8px;
+            overflow: hidden;
+            margin-right: 20px;
+        }
+        
+        .item-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+        
+        .cart-item:hover .item-image img {
+            transform: scale(1.05);
+        }
+        
+        .item-details {
+            flex-grow: 1;
+        }
+        
+        .item-name {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #2c3e50;
+        }
+        
+        .item-desc {
+            color: #7f8c8d;
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+        
+        .item-price {
+            font-size: 20px;
+            font-weight: 700;
+            color: #2c3e50;
+        }
+        
+        .item-actions {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: flex-end;
+        }
+        
+        .remove-item {
+            color: #e74c3c;
+            background: none;
+            border: none;
+            font-size: 14px;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+        
+        .remove-item:hover {
+            color: #c0392b;
+        }
+        
+        .quantity-controls {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .quantity-btn {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            border: 1px solid #ddd;
+            background: white;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .quantity-btn:hover {
+            background: #f1f1f1;
+        }
+        
+        .quantity {
+            font-size: 16px;
+            font-weight: 600;
+            min-width: 30px;
+            text-align: center;
+        }
+        
+        .summary-title {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: #2c3e50;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .summary-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+        }
+        
+        .summary-label {
+            color: #7f8c8d;
+        }
+        
+        .summary-value {
+            font-weight: 600;
+        }
+        
+        .summary-total {
+            display: flex;
+            justify-content: space-between;
+            margin: 25px 0;
+            padding-top: 15px;
+            border-top: 1px solid #eee;
+            font-size: 18px;
+            font-weight: 700;
+            color: #2c3e50;
+        }
+        
+        .checkout-btn {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(38, 117, 252, 0.3);
+        }
+        
+        .checkout-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(38, 117, 252, 0.4);
+        }
+        
+        .continue-shopping {
+            display: block;
+            text-align: center;
+            margin-top: 15px;
+            color: #3498db;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+        
+        .continue-shopping:hover {
+            color: #2980b9;
+        }
+        
+        .empty-cart {
+            text-align: center;
+            padding: 60px 20px;
+            color: #7f8c8d;
+        }
+        
+        .empty-cart i {
+            font-size: 60px;
+            margin-bottom: 20px;
+            color: #ddd;
+        }
+        
+        .empty-cart p {
+            font-size: 18px;
+            margin-bottom: 25px;
+        }
+        
+        .shop-now-btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .shop-now-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(38, 117, 252, 0.4);
+        }
+        
+        @media (max-width: 900px) {
+            .cart-container {
+                flex-direction: column;
+            }
+            
+            .cart-summary {
+                width: 100%;
+            }
+        }
+        
+        @media (max-width: 600px) {
+            .cart-item {
+                flex-direction: column;
+            }
+            
+            .item-image {
+                width: 100%;
+                height: 200px;
+                margin-right: 0;
+                margin-bottom: 15px;
+            }
+            
+            .item-actions {
+                flex-direction: row;
+                align-items: center;
+                margin-top: 15px;
+            }
+        }
+        
+        .discount-badge {
+            background: #ff6b6b;
+            color: white;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            margin-left: 10px;
+            vertical-align: middle;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">Luxe<span>Cart</span></div>
+                <nav>
+                    <a href="#" style="color: white; text-decoration: none; margin: 0 15px;">Home</a>
+                    <a href="#" style="color: white; text-decoration: none; margin: 0 15px;">Products</a>
+                    <a href="#" style="color: white; text-decoration: none; margin: 0 15px;">Collections</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="cart-container">
+            <div class="cart-items">
+                <div class="cart-header">
+                    <div class="cart-title">Your Shopping Cart</div>
+                    <div class="items-count">3 Items</div>
+                </div>
+                
+                <div class="cart-items-list">
+                    <div class="cart-item">
+                        <div class="item-image">
+                            <img src="https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Designer Sneakers">
+                        </div>
+                        <div class="item-details">
+                            <h3 class="item-name">Premium Leather Sneakers</h3>
+                            <p class="item-desc">Luxury designer sneakers with custom fit and premium materials</p>
+                            <div class="item-price">$249.99 <span class="discount-badge">20% OFF</span></div>
+                        </div>
+                        <div class="item-actions">
+                            <button class="remove-item"><i class="fas fa-trash"></i> Remove</button>
+                            <div class="quantity-controls">
+                                <button class="quantity-btn">-</button>
+                                <span class="quantity">1</span>
+                                <button class="quantity-btn">+</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="cart-item">
+                        <div class="item-image">
+                            <img src="https://images.unsplash.com/photo-1534030347209-467a5b0ad3e6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Designer Watch">
+                        </div>
+                        <div class="item-details">
+                            <h3 class="item-name">Luxury Chronograph Watch</h3>
+                            <p class="item-desc">Automatic movement with sapphire crystal and leather strap</p>
+                            <div class="item-price">$429.99</div>
+                        </div>
+                        <div class="item-actions">
+                            <button class="remove-item"><i class="fas fa-trash"></i> Remove</button>
+                            <div class="quantity-controls">
+                                <button class="quantity-btn">-</button>
+                                <span class="quantity">1</span>
+                                <button class="quantity-btn">+</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="cart-item">
+                        <div class="item-image">
+                            <img src="https://images.unsplash.com/photo-1584917865442-de89df76afd3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Designer Bag">
+                        </div>
+                        <div class="item-details">
+                            <h3 class="item-name">Designer Handbag</h3>
+                            <p class="item-desc">Handcrafted genuine leather with gold accent hardware</p>
+                            <div class="item-price">$359.99 <span class="discount-badge">15% OFF</span></div>
+                        </div>
+                        <div class="item-actions">
+                            <button class="remove-item"><i class="fas fa-trash"></i> Remove</button>
+                            <div class="quantity-controls">
+                                <button class="quantity-btn">-</button>
+                                <span class="quantity">1</span>
+                                <button class="quantity-btn">+</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="cart-summary">
+                <h2 class="summary-title">Order Summary</h2>
+                
+                <div class="summary-item">
+                    <span class="summary-label">Subtotal</span>
+                    <span class="summary-value">$1,039.97</span>
+                </div>
+                
+                <div class="summary-item">
+                    <span class="summary-label">Shipping</span>
+                    <span class="summary-value">$24.99</span>
+                </div>
+                
+                <div class="summary-item">
+                    <span class="summary-label">Tax</span>
+                    <span class="summary-value">$83.20</span>
+                </div>
+                
+                <div class="summary-item">
+                    <span class="summary-label">Discount</span>
+                    <span class="summary-value" style="color: #e74c3c;">-$102.00</span>
+                </div>
+                
+                <div class="summary-total">
+                    <span>Total</span>
+                    <span>$1,046.16</span>
+                </div>
+                
+                <button class="checkout-btn">Proceed to Checkout</button>
+                <a href="#" class="continue-shopping">Continue Shopping</a>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Quantity controls
+            const quantityBtns = document.querySelectorAll('.quantity-btn');
+            quantityBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const parentControls = this.closest('.quantity-controls');
+                    const quantityElement = parentControls.querySelector('.quantity');
+                    let quantity = parseInt(quantityElement.textContent);
+                    
+                    if (this.textContent === '+') {
+                        quantity++;
+                    } else if (this.textContent === '-' && quantity > 1) {
+                        quantity--;
+                    }
+                    
+                    quantityElement.textContent = quantity;
+                    updateTotals();
+                });
+            });
+            
+            // Remove items
+            const removeBtns = document.querySelectorAll('.remove-item');
+            removeBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const cartItem = this.closest('.cart-item');
+                    cartItem.style.opacity = '0';
+                    setTimeout(() => {
+                        cartItem.remove();
+                        updateItemCount();
+                        updateTotals();
+                    }, 300);
+                });
+            });
+            
+            // Update item count
+            function updateItemCount() {
+                const items = document.querySelectorAll('.cart-item');
+                const countElement = document.querySelector('.items-count');
+                countElement.textContent = `${items.length} Item${items.length !== 1 ? 's' : ''}`;
+                
+                if (items.length === 0) {
+                    document.querySelector('.cart-items-list').innerHTML = `
+                        <div class="empty-cart">
+                            <i class="fas fa-shopping-cart"></i>
+                            <p>Your cart is empty</p>
+                            <a href="#" class="shop-now-btn">Shop Now</a>
+                        </div>
+                    `;
+                }
+            }
+            
+            // Update totals (simplified version)
+            function updateTotals() {
+                // In a real application, this would calculate based on actual prices
+                console.log("Totals would be updated here based on quantities");
+            }
+        });
+    </script>
+</body>
+</html>
