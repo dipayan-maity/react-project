@@ -28,7 +28,7 @@ export const CartProvider = ({ children }) => {
         });
         return prevCart.map(item =>
           item.id === product.id
-            ? { ...item, quantity: item.quantity + 1 }
+            ? { ...item, quantity: product.quantity || item.quantity + 1 }
             : item
         );
       } else {
@@ -40,7 +40,7 @@ export const CartProvider = ({ children }) => {
           pauseOnHover: true,
           draggable: true,
         });
-        return [...prevCart, { ...product, quantity: 1 }];
+        return [...prevCart, { ...product, quantity: product.quantity || 1 }];
       }
     });
   };

@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { FaSearch, FaUser, FaHeart, FaShoppingCart, FaBars, FaTimes } from 'react-icons/fa';
+import { Link, useNavigate } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
 
 const Header = ({ onCartClick, wishlistCount = 0 }) => {
   const { cartItemCount } = useCart();
+  const navigate = useNavigate();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
@@ -50,23 +50,23 @@ const Header = ({ onCartClick, wishlistCount = 0 }) => {
           
           <div className="action-buttons">
             <div className="icon-button">
-              <FaSearch />
+              <i className="fas fa-search"></i>
             </div>
             <div className="icon-button">
-              <FaUser />
+              <i className="fas fa-user"></i>
             </div>
-            <div className="icon-button">
-              <FaHeart />
+            <div className="icon-button" onClick={() => navigate('/wishlist')}>
+              <i className="fas fa-heart"></i>
               {wishlistCount > 0 && <div className="wishlist-count">{wishlistCount}</div>}
             </div>
             <div className="icon-button" onClick={onCartClick}>
-              <FaShoppingCart />
+              <i className="fas fa-shopping-cart"></i>
               {cartItemCount > 0 && <div className="cart-count">{cartItemCount}</div>}
             </div>
           </div>
           
           <div className="mobile-menu-button" onClick={toggleMobileMenu}>
-            {isMobileMenuOpen ? <FaTimes /> : <FaBars />}
+            {isMobileMenuOpen ? <i className="fas fa-times"></i> : <i className="fas fa-bars"></i>}
           </div>
         </div>
         
@@ -82,17 +82,17 @@ const Header = ({ onCartClick, wishlistCount = 0 }) => {
           
           <div className="mobile-actions">
             <div className="icon-button">
-              <FaSearch />
+              <i className="fas fa-search"></i>
             </div>
             <div className="icon-button">
-              <FaUser />
+              <i className="fas fa-user"></i>
             </div>
-            <div className="icon-button">
-              <FaHeart />
+            <div className="icon-button" onClick={() => navigate('/wishlist')}>
+              <i className="fas fa-heart"></i>
               {wishlistCount > 0 && <div className="wishlist-count">{wishlistCount}</div>}
             </div>
             <div className="icon-button" onClick={onCartClick}>
-              <FaShoppingCart />
+              <i className="fas fa-shopping-cart"></i>
               {cartItemCount > 0 && <div className="cart-count">{cartItemCount}</div>}
             </div>
           </div>

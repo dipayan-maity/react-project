@@ -1,58 +1,105 @@
-import React, { useEffect, useState } from 'react';
-import { FaShoppingCart, FaPlayCircle, FaBolt, FaBatteryFull, FaAward } from 'react-icons/fa';
+import React, { useEffect } from "react";
+import { Link } from "react-router-dom"; // for Explore Collection navigation
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const Banner = () => {
-  const [animate, setAnimate] = useState(false);
-
   useEffect(() => {
-    // Trigger animation after component mounts
-    setAnimate(true);
+    const bannerElements = document.querySelectorAll(
+      ".premium-banner-badge, .premium-banner-title, .premium-banner-subtitle, .premium-banner-features, .premium-banner-buttons"
+    );
+
+    bannerElements.forEach((element, index) => {
+      element.style.opacity = "0";
+      element.style.transform = "translateY(20px)";
+      element.style.transition = `opacity 0.6s ease ${index * 0.2}s, transform 0.6s ease ${index * 0.2}s`;
+
+      setTimeout(() => {
+        element.style.opacity = "1";
+        element.style.transform = "translateY(0)";
+      }, 100 + index * 200);
+    });
+
+    const premiumButtons = document.querySelectorAll(".premium-banner-btn");
+    premiumButtons.forEach((button) => {
+      button.addEventListener("mouseenter", function () {
+        this.style.transform = "translateY(-3px)";
+      });
+      button.addEventListener("mouseleave", function () {
+        this.style.transform = "translateY(0)";
+      });
+    });
+
+    const premiumFeatureCards = document.querySelectorAll(".premium-feature-card");
+    const premiumObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.style.opacity = "1";
+            entry.target.style.transform = "translateY(0)";
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+
+    premiumFeatureCards.forEach((card, index) => {
+      card.style.opacity = "0";
+      card.style.transform = "translateY(20px)";
+      card.style.transition = `opacity 0.5s ease ${index * 0.2}s, transform 0.5s ease ${index * 0.2}s`;
+      premiumObserver.observe(card);
+    });
   }, []);
 
   return (
-    <div className="banner">
-      <div className="banner-content">
-        <div className={`banner-text ${animate ? 'animate' : ''}`}>
-          <div className="banner-badge">New Generation</div>
-          <h1 className="banner-title">Elevate Your Tech Experience</h1>
-          <p className="banner-description">
-            Discover the future of technology with our premium gadgets.
-            Designed for those who demand excellence and innovation in every detail.
-          </p>
+    <div className="premium-banner">
+      <div className="premium-banner-pattern"></div>
 
-          <div className="banner-cta">
-            <button className="cta-button cta-primary">
-              <FaShoppingCart /> Shop Now
-            </button>
-            <button className="cta-button cta-secondary">
-              <FaPlayCircle /> Watch Demo
-            </button>
-          </div>
+      <div className="premium-banner-content">
+        <div className="premium-banner-badge">
+          <FontAwesomeIcon icon="crown" /> Premium Collection Launch
+        </div>
 
-          <div className="banner-features">
-            <div className="feature">
-              <FaBolt />
-              <span>Fast Performance</span>
-            </div>
-            <div className="feature">
-              <FaBatteryFull />
-              <span>Long Battery Life</span>
-            </div>
-            <div className="feature">
-              <FaAward />
-              <span>Premium Design</span>
-            </div>
+        <h1 className="premium-banner-title">
+          Discover <span>Exclusive Elegance</span> in Every Detail
+        </h1>
+
+        <p className="premium-banner-subtitle">
+          Experience the perfect blend of sophistication and innovation with our carefully curated premium collection. 
+          Designed for those who appreciate exceptional quality and timeless style.
+        </p>
+
+        <div className="premium-banner-features">
+          <div className="premium-banner-feature">
+            <FontAwesomeIcon icon="check-circle" />
+            <span>Premium Materials</span>
           </div>
+          <div className="premium-banner-feature">
+            <FontAwesomeIcon icon="shipping-fast" />
+            <span>Free Worldwide Shipping</span>
+          </div>
+          <div className="premium-banner-feature">
+            <FontAwesomeIcon icon="award" />
+            <span>Lifetime Warranty</span>
+          </div>
+        </div>
+
+        <div className="premium-banner-buttons">
+          <Link to="/shop" className="premium-banner-btn premium-banner-btn-primary">
+            Explore Collection <FontAwesomeIcon icon="arrow-right" />
+          </Link>
+          <a href="#" className="premium-banner-btn premium-banner-btn-secondary">
+            Watch Story <FontAwesomeIcon icon="play-circle" />
+          </a>
+        </div>
+
+        <div className="premium-floating-shapes">
+          <div className="premium-shape"></div>
+          <div className="premium-shape"></div>
+          <div className="premium-shape"></div>
         </div>
       </div>
 
-      <div className="banner-image">
-        <img
-          className={animate ? 'animate' : ''}
-          src="https://images.unsplash.com/photo-1510557880182-3d4d3cba35a5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1090&q=80"
-          alt="Premium Gadget"
-        />
-      </div>
+
     </div>
   );
 };

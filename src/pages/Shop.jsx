@@ -1,14 +1,33 @@
-import SectionTitle from '../components/SectionTitle';
+import React from 'react';
+import Banner from '../components/Banner';
+import ProductList from '../components/ProductList';
+import { gadgets } from '../data/gadgets';
+import { useCart } from '../context/CartContext';
+import { useNavigate } from 'react-router-dom';
 
-export default function Shop() {
+const ShopPage = ({ wishlistItems, toggleWishlist }) => {
+  const { addToCart } = useCart();
+  const navigate = useNavigate();
+
+  const viewProduct = (id) => {
+    navigate(`/product/${id}`);
+  };
+
   return (
-    <main className="container mx-auto p-4">
-      <SectionTitle
-        title="Shop Page"
-        subtitle="Browse our products"
-        alignment="center"
-        showLine={true}
-      />
+    <main className="shop-page">
+      <Banner />
+
+      <div className="container">
+        <ProductList
+          products={gadgets} // All products
+          addToCart={addToCart}
+          toggleWishlist={toggleWishlist}
+          wishlistItems={wishlistItems}
+          viewProduct={viewProduct} // For product details navigation
+        />
+      </div>
     </main>
   );
-}
+};
+
+export default ShopPage;

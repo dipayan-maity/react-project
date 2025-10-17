@@ -1,149 +1,133 @@
-import React, { useState, useEffect } from 'react';
-import { FaBolt, FaShoppingCart } from 'react-icons/fa';
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import { gadgets } from "../data/gadgets"; // import JSON
+import SectionTitle from "./SectionTitle";
 
-const SpecialOffers = ({ addToCart, products }) => {
-  const [timeLeft, setTimeLeft] = useState({});
+const OfferSection = ({ gadgetId }) => {
+  const gadget = gadgets.find((item) => item.id === gadgetId);
 
-  // Filter products that are on sale and limit to 3
-  const saleProducts = products.filter(product => product.onSale).slice(0, 3);
+  // Handle missing timer property gracefully with default 1 day countdown
+  const defaultTimer = { days: 1, hours: 0, minutes: 0, seconds: 0 };
+  const timer = gadget?.timer || defaultTimer;
 
-  // Set end times for each product (different end times for variety)
+  // Ensure timer values are numbers
+  const safeTimer = {
+    days: isNaN(timer.days) ? 1 : timer.days,
+    hours: isNaN(timer.hours) ? 0 : timer.hours,
+    minutes: isNaN(timer.minutes) ? 0 : timer.minutes,
+    seconds: isNaN(timer.seconds) ? 0 : timer.seconds,
+  };
+
+  // Ensure price and originalPrice are numbers to avoid NaN
+  const price = typeof gadget?.price === 'number' ? gadget.price : 0;
+  const originalPrice = typeof gadget?.originalPrice === 'number' ? gadget.originalPrice : null;
+
+  const [timeLeft, setTimeLeft] = useState({
+    days: safeTimer.days.toString().padStart(2, "0"),
+    hours: safeTimer.hours.toString().padStart(2, "0"),
+    minutes: safeTimer.minutes.toString().padStart(2, "0"),
+    seconds: safeTimer.seconds.toString().padStart(2, "0"),
+  });
+
   useEffect(() => {
-    const calculateTimeLeft = () => {
-      const timeLeft = {};
-      const now = new Date();
-      
-      saleProducts.forEach((product, index) => {
-        
-        let endTime;
-        if (index === 0) {
-        
-          endTime = new Date(Date.now() + 12 * 60 * 60 * 1000);
-        } else if (index === 1) {
-          
-          endTime = new Date(Date.now() + 2 * 24 * 60 * 60 * 1000);
-        } else {
-          
-          endTime = new Date(Date.now() + 4 * 24 * 60 * 60 * 1000);
-        }
-        
-        const difference = endTime - now;
-        
-        if (difference > 0) {
-          const days = Math.floor(difference / (1000 * 60 * 60 * 24));
-          const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-          const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
-          const seconds = Math.floor((difference % (1000 * 60)) / 1000);
-          
-          timeLeft[product.id] = {
-            days,
-            hours,
-            minutes,
-            seconds
-          };
-        } else {
-          timeLeft[product.id] = { days: 0, hours: 0, minutes: 0, seconds: 0 };
-        }
-      });
-      
-      return timeLeft;
-    };
+    const targetDate = new Date();
+    targetDate.setDate(targetDate.getDate() + safeTimer.days);
+    targetDate.setHours(
+      safeTimer.hours,
+      safeTimer.minutes,
+      safeTimer.seconds,
+      0
+    );
 
-    
-    const timer = setTimeout(() => {
-      setTimeLeft(calculateTimeLeft());
+    const interval = setInterval(() => {
+      const now = new Date();
+      const difference = targetDate - now;
+
+      if (difference <= 0) {
+        setTimeLeft({ days: "00", hours: "00", minutes: "00", seconds: "00" });
+        clearInterval(interval);
+        return;
+      }
+
+      const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+      setTimeLeft({
+        days: days.toString().padStart(2, "0"),
+        hours: hours.toString().padStart(2, "0"),
+        minutes: minutes.toString().padStart(2, "0"),
+        seconds: seconds.toString().padStart(2, "0"),
+      });
     }, 1000);
 
-    return () => clearTimeout(timer);
-  }, [products]);
-
-  // Calculate discount percentage
-  const calculateDiscount = (originalPrice, currentPrice) => {
-    return Math.round((1 - currentPrice / originalPrice) * 100);
-  };
-
-  // Generate random sold percentage for visual effect
-  const generateSoldPercentage = () => {
-    return Math.floor(Math.random() * 30) + 50; // Random between 50-80%
-  };
+    return () => clearInterval(interval);
+  }, [safeTimer]);
 
   return (
-    <div className="special-offers">
-      <div className="offers-container">
-        {saleProducts.map(product => {
-          const discount = calculateDiscount(product.originalPrice, product.price);
-          const soldPercentage = generateSoldPercentage();
-          
-          return (
-            <div key={product.id} className="offer-card">
-              <div className="offer-badge">SALE</div>
-              <div className="offer-image">
-                <img src={product.image} alt={product.name} />
-              </div>
-              
-              <div className="offer-content">
-                <h3 className="offer-title">{product.name}</h3>
-                <p className="offer-description">{product.description}</p>
-                
-                <div className="offer-price">
-                  <div className="current-price">${product.price.toFixed(2)}</div>
-                  <div className="original-price">${product.originalPrice.toFixed(2)}</div>
-                  <div className="discount">{discount}% OFF</div>
+    <div>
+      <div className="offer-container">
+        <div
+          className="image-section"
+          style={{
+            background: `linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(${gadget?.image || ''}) center/cover no-repeat`,
+          }}
+        >
+          <div className="image-content">
+            <span className="badge">{gadget?.badge || ''}</span>
+            <h2>{gadget?.name || 'Unnamed Gadget'}</h2>
+            <p>{gadget?.description || ''}</p>
+          </div>
+        </div>
+
+          <div className="text-section">
+            <h3>{gadget?.heading || ''}</h3>
+            <p>{gadget?.description || ''}</p>
+
+            <div className="features">
+              {gadget?.features && gadget.features.map((feature, index) => (
+                <div className="feature" key={index}>
+                  <i className="fas fa-check-circle"></i>
+                  <span>{feature}</span>
                 </div>
-                
-                <div className="countdown">
-                  <div className="countdown-title">Offer ends in:</div>
-                  <div className="countdown-timer">
-                    {timeLeft[product.id] && (
-                      <>
-                        {timeLeft[product.id].days > 0 && (
-                          <>
-                            <div className="countdown-unit">
-                              <span className="unit-value">{timeLeft[product.id].days.toString().padStart(2, '0')}</span>
-                              <span className="unit-label">Days</span>
-                            </div>
-                            <div className="countdown-separator">:</div>
-                          </>
-                        )}
-                        <div className="countdown-unit">
-                          <span className="unit-value">{timeLeft[product.id].hours.toString().padStart(2, '0')}</span>
-                          <span className="unit-label">Hours</span>
-                        </div>
-                        <div className="countdown-separator">:</div>
-                        <div className="countdown-unit">
-                          <span className="unit-value">{timeLeft[product.id].minutes.toString().padStart(2, '0')}</span>
-                          <span className="unit-label">Mins</span>
-                        </div>
-                        <div className="countdown-separator">:</div>
-                        <div className="countdown-unit">
-                          <span className="unit-value">{timeLeft[product.id].seconds.toString().padStart(2, '0')}</span>
-                          <span className="unit-label">Secs</span>
-                        </div>
-                      </>
-                    )}
-                  </div>
-                </div>
-                
-             
-                
-                <div className="offer-actions">
-                  <button className="offer-button button-primary">
-                    <FaBolt /> Buy Now
-                  </button>
-                  <button 
-                    className="offer-button button-secondary"
-                    onClick={() => addToCart(product)}
-                  >
-                    <FaShoppingCart /> Add to Cart
-                  </button>
-                </div>
+              ))}
+            </div>
+
+            <div className="price">
+              <div className="current-price">${price.toFixed(2)}</div>
+              <div className="original-price">{originalPrice !== null ? `$${originalPrice.toFixed(2)}` : null}</div>
+              <div className="discount">
+                {originalPrice !== null ? `$${(originalPrice - price).toFixed(2)} OFF` : null}
               </div>
             </div>
-          );
-        })}
+
+            <Link to={`/product/${gadget?.id || ''}`} className="btn">
+              Grab This Offer <i className="fas fa-arrow-right"></i>
+            </Link>
+
+            <div className="timer">
+              <div className="time-unit">
+                <div className="time-value">{timeLeft.days}</div>
+                <div className="time-label">Days</div>
+              </div>
+              <div className="time-unit">
+                <div className="time-value">{timeLeft.hours}</div>
+                <div className="time-label">Hours</div>
+              </div>
+              <div className="time-unit">
+                <div className="time-value">{timeLeft.minutes}</div>
+                <div className="time-label">Minutes</div>
+              </div>
+              <div className="time-unit">
+                <div className="time-value">{timeLeft.seconds}</div>
+                <div className="time-label">Seconds</div>
+              </div>
+            </div>
+          </div>
       </div>
     </div>
   );
 };
 
-export default SpecialOffers;
+export default OfferSection;

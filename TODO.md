@@ -1,0 +1,4 @@
+- [x] Update orderData totals in handleSubmit: set tax to 0, total to cartTotal
+- [x] Remove tax row from slick-summary-totals in order summary
+- [x] Update pay button text to display cartTotal instead of (cartTotal * 1.08)
+- [x] Update total row in summary to display cartTotal

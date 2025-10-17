@@ -1,96 +1,53 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { FaShoppingCart, FaHeart, FaRegHeart, FaStar, FaStarHalfAlt } from 'react-icons/fa';
+import React from "react";
 
-const ProductCard = ({ product, addToCart, toggleWishlist, isInWishlist }) => {
-  const handleAddToCart = () => {
-    addToCart(product);
-  };
-
-  const handleWishlistClick = () => {
-    toggleWishlist(product);
-  };
-
-  const handleFloatingIconClick = (action) => {
-    if (action === 'cart') {
-      handleAddToCart();
-    } else if (action === 'wishlist') {
-      handleWishlistClick();
-    }
-  };
-
+const ProductCard = ({ product, addToCart, toggleWishlist, isInWishlist, viewProduct }) => {
   return (
-    <div className="product-card">
-      <div className="image-container">
-        <img
-          src={product.image}
-          alt={product.name}
-          className="product-image"
-        />
-
-        <div className="category-tag">{product.category}</div>
-
-        {product.onSale && (
-          <div className="sale-tag">SALE</div>
-        )}
-
-        {/* Floating Icons */}
-        <div className="floating-icons">
-          <div
-            className="icon-btn cart-icon"
-            onClick={() => handleFloatingIconClick('cart')}
-          >
-            <FaShoppingCart />
+    <div className={`premium-product-card ${product.featured ? "premium-featured-product" : ""}`} data-category={product.category}>
+      <div className="premium-product-image">
+        <img src={product.image} alt={product.name} />
+        {product.badge && <div className="premium-product-badge">{product.badge}</div>}
+        <div className="premium-product-actions">
+          <div className="premium-action-btn" title="Add to Cart" onClick={() => addToCart(product)}>
+            <i className="fas fa-shopping-cart"></i>
           </div>
-          <div
-            className="icon-btn wishlist-icon"
-            onClick={() => handleFloatingIconClick('wishlist')}
-          >
-            <FaHeart />
+          <div className="premium-action-btn" title="Add to Wishlist" onClick={() => toggleWishlist(product)}>
+            <i className={`fas fa-heart ${isInWishlist ? "active" : ""}`}></i>
+          </div>
+          <div className="premium-action-btn" title="Quick View" onClick={() => viewProduct(product.id)}>
+            <i className="fas fa-eye"></i>
           </div>
         </div>
       </div>
 
-      <div className="product-info">
-        <h3 className="product-name">
-          <Link to={`/product/${product.id}`}>{product.name}</Link>
-        </h3>
-        <p className="product-description">{product.description}</p>
+      <div className="premium-product-content">
+        <h3>{product.name}</h3>
+        <p>{product.description}</p>
 
-        <div className="rating">
-          <div className="stars">
-            {[...Array(5)].map((_, i) => (
-              i < Math.floor(product.rating) ?
-                <FaStar key={i} className="star" /> :
-                i === Math.floor(product.rating) && product.rating % 1 >= 0.5 ?
-                  <FaStarHalfAlt key={i} className="star" /> :
-                  <FaStar key={i} className="star empty" />
-            ))}
+        <div className="premium-product-rating">
+          <div className="premium-stars">
+            {isNaN(product.rating) ? (
+              <span>N/A</span>
+            ) : (
+              [...Array(5)].map((_, i) => {
+                const rating = Math.floor(product.rating);
+                if (i < rating) return <i key={i} className="fas fa-star"></i>;
+                if (i < product.rating) return <i key={i} className="fas fa-star-half-alt"></i>;
+                return <i key={i} className="far fa-star"></i>;
+              })
+            )}
           </div>
-          <span className="rating-value">{product.rating}</span>
+          <div className="premium-rating-value">
+            {isNaN(product.rating) ? 'N/A' : product.rating} ({isNaN(product.reviews) ? 0 : product.reviews} reviews)
+          </div>
         </div>
 
-        <div className="price-container">
-          <span className="current-price">${product.price.toFixed(2)}</span>
-          {product.originalPrice && (
-            <span className="original-price">${product.originalPrice.toFixed(2)}</span>
-          )}
+        <div className="premium-product-price">
+          <div className="premium-current-price">${isNaN(product.price) ? 'N/A' : product.price}</div>
+          {product.oldPrice && !isNaN(product.oldPrice) && <div className="premium-old-price">${product.oldPrice}</div>}
+          {product.discount && <div className="premium-discount">{product.discount}</div>}
         </div>
 
-        <button
-          className="add-to-cart"
-          onClick={handleAddToCart}
-        >
-          Add to Cart
-        </button>
-
-        <button
-          className={`wishlist ${isInWishlist ? 'active' : ''}`}
-          onClick={handleWishlistClick}
-        >
-          {isInWishlist ? <FaHeart /> : <FaRegHeart />}
-          {isInWishlist ? ' In Wishlist' : ' Add to Wishlist'}
-        </button>
+      
       </div>
     </div>
   );

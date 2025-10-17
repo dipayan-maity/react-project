@@ -1,30 +1,25 @@
 import React, { useEffect } from 'react';
 import { FaTimes, FaPlus, FaMinus, FaTrash, FaShoppingCart } from 'react-icons/fa';
 import { useCart } from '../context/CartContext';
+import { useNavigate } from 'react-router-dom';
 
 const CartDrawer = ({ isOpen, onClose }) => {
   const { cart, updateQuantity, removeFromCart, cartTotal } = useCart();
+  const navigate = useNavigate();
+
   // Prevent body scroll when cart is open
   useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'auto';
-    }
-    
+    document.body.style.overflow = isOpen ? 'hidden' : 'auto';
     return () => {
       document.body.style.overflow = 'auto';
     };
   }, [isOpen]);
 
-  // Close cart when pressing Escape key
+  // Close cart on Escape key
   useEffect(() => {
     const handleEscape = (e) => {
-      if (e.key === 'Escape' && isOpen) {
-        onClose();
-      }
+      if (e.key === 'Escape' && isOpen) onClose();
     };
-
     document.addEventListener('keydown', handleEscape);
     return () => document.removeEventListener('keydown', handleEscape);
   }, [isOpen, onClose]);
@@ -36,7 +31,7 @@ const CartDrawer = ({ isOpen, onClose }) => {
         className={`cart-drawer-overlay ${isOpen ? 'active' : ''}`}
         onClick={onClose}
       ></div>
-      
+
       {/* Cart Drawer */}
       <div className={`cart-drawer ${isOpen ? 'active' : ''}`}>
         <div className="cart-header">
@@ -45,7 +40,7 @@ const CartDrawer = ({ isOpen, onClose }) => {
             <FaTimes />
           </div>
         </div>
-        
+
         <div className="cart-items">
           {cart.length === 0 ? (
             <div className="empty-cart">
@@ -93,7 +88,16 @@ const CartDrawer = ({ isOpen, onClose }) => {
               <span className="total-label">Total:</span>
               <span className="total-amount">${cartTotal.toFixed(2)}</span>
             </div>
-            <button className="checkout-btn">Proceed to Checkout</button>
+            {/* Navigate to cart page */}
+            <button
+              className="checkout-btn"
+              onClick={() => {
+                onClose(); // close drawer
+                navigate('/cart'); // navigate to cart page
+              }}
+            >
+              Proceed to Cart
+            </button>
           </div>
         )}
       </div>
