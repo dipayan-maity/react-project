@@ -1,4 +1,12 @@
-- [x] Update orderData totals in handleSubmit: set tax to 0, total to cartTotal
-- [x] Remove tax row from slick-summary-totals in order summary
-- [x] Update pay button text to display cartTotal instead of (cartTotal * 1.08)
-- [x] Update total row in summary to display cartTotal
+# Deployment to GitHub Pages
+
+- [x] Update package.json to add gh-pages dependency and deploy script
+- [x] Update vite.config.js to set base path for GitHub Pages
+- [x] Install dependencies
+- [x] Build the project
+- [x] Deploy to GitHub Pages
+- [x] Fix Font Awesome CDN
+- [x] Fix routing for GitHub Pages
+- [x] Fix Font Awesome icons in Header and FeaturedProducts components
+- [x] Rebuild and redeploy
+- [ ] Enable GitHub Pages in repository settings

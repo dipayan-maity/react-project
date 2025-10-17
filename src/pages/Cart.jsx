@@ -155,17 +155,12 @@ const Cart = () => {
                   <span>Shipping</span>
                   <span className="elegant-free">FREE</span>
                 </div>
-                <div className="elegant-summary-row">
-                  <span>Tax</span>
-                  <span>${(cartTotal * 0.08).toFixed(2)}</span>
-                </div>
-                
                 <div className="elegant-divider"></div>
-                
+
                 <div className="elegant-total-row">
                   <span>Total</span>
                   <span className="elegant-total-amount">
-                    ${(cartTotal * 1.08).toFixed(2)}
+                    ${cartTotal.toFixed(2)}
                   </span>
                 </div>
               </div>

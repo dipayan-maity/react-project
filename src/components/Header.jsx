@@ -50,23 +50,23 @@ const Header = ({ onCartClick, wishlistCount = 0 }) => {
           
           <div className="action-buttons">
             <div className="icon-button">
-              <i className="fas fa-search"></i>
+              <i className="fa-solid fa-magnifying-glass"></i>
             </div>
             <div className="icon-button">
-              <i className="fas fa-user"></i>
+              <i className="fa-solid fa-user"></i>
             </div>
             <div className="icon-button" onClick={() => navigate('/wishlist')}>
-              <i className="fas fa-heart"></i>
+              <i className="fa-solid fa-heart"></i>
               {wishlistCount > 0 && <div className="wishlist-count">{wishlistCount}</div>}
             </div>
             <div className="icon-button" onClick={onCartClick}>
-              <i className="fas fa-shopping-cart"></i>
+              <i className="fa-solid fa-cart-shopping"></i>
               {cartItemCount > 0 && <div className="cart-count">{cartItemCount}</div>}
             </div>
           </div>
           
           <div className="mobile-menu-button" onClick={toggleMobileMenu}>
-            {isMobileMenuOpen ? <i className="fas fa-times"></i> : <i className="fas fa-bars"></i>}
+            {isMobileMenuOpen ? <i className="fa-solid fa-xmark"></i> : <i className="fa-solid fa-bars"></i>}
           </div>
         </div>
         
@@ -82,17 +82,17 @@ const Header = ({ onCartClick, wishlistCount = 0 }) => {
           
           <div className="mobile-actions">
             <div className="icon-button">
-              <i className="fas fa-search"></i>
+              <i className="fa-solid fa-magnifying-glass"></i>
             </div>
             <div className="icon-button">
-              <i className="fas fa-user"></i>
+              <i className="fa-solid fa-user"></i>
             </div>
             <div className="icon-button" onClick={() => navigate('/wishlist')}>
-              <i className="fas fa-heart"></i>
+              <i className="fa-solid fa-heart"></i>
               {wishlistCount > 0 && <div className="wishlist-count">{wishlistCount}</div>}
             </div>
             <div className="icon-button" onClick={onCartClick}>
-              <i className="fas fa-shopping-cart"></i>
+              <i className="fa-solid fa-cart-shopping"></i>
               {cartItemCount > 0 && <div className="cart-count">{cartItemCount}</div>}
             </div>
           </div>

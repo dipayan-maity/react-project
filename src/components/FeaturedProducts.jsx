@@ -61,15 +61,15 @@ const FeaturedProducts = ({ products, wishlistItems, toggleWishlist, viewProduct
                 {product.badge && <div className="premium-product-badge">{product.badge}</div>}
                 <div className="premium-product-actions">
                   <div className="premium-action-btn" title="Add to Cart" onClick={() => addToCart(product)}>
-                    <i className="fas fa-shopping-cart"></i>
+                    <i className="fa-solid fa-cart-shopping"></i>
                   </div>
                   <div className={`premium-action-btn ${isInWishlist ? "wishlist-active" : ""}`}
                        title={isInWishlist ? "Remove from Wishlist" : "Add to Wishlist"}
                        onClick={() => toggleWishlist(product)}>
-                    <i className="fas fa-heart"></i>
+                    <i className="fa-solid fa-heart"></i>
                   </div>
                   <div className="premium-action-btn" title="Quick View" onClick={() => viewProduct(product.id)}>
-                    <i className="fas fa-eye"></i>
+                    <i className="fa-solid fa-eye"></i>
                   </div>
                 </div>
               </div>

@@ -165,7 +165,7 @@ export default function App() {
   return (
     <ShopProvider>
       <CartProvider>
-        <Router>
+        <Router basename="/react-project">
           <AppContent />
         </Router>
       </CartProvider>
