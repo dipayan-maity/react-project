@@ -9,6 +9,31 @@ import { FaSlidersH, FaTh, FaList, FaTimes, FaStar, FaFilter } from 'react-icons
 const ShopPage = ({ wishlistItems, toggleWishlist }) => {
   const { addToCart } = useCart();
   const navigate = useNavigate();
+
+  // Color mapping for swatches
+  const colorMap = {
+    'Black': '#000000',
+    'Silver': '#C0C0C0',
+    'Blue': '#007BFF',
+    'Red': '#FF0000',
+    'Black/Red': 'linear-gradient(45deg, #000000 50%, #FF0000 50%)',
+    'White': '#FFFFFF',
+    'Brown': '#8B4513',
+    'Brown/Black': 'linear-gradient(45deg, #8B4513 50%, #000000 50%)',
+    'Navy Blue': '#000080',
+    'Floral Pattern': '#FFB6C1',
+    'Beige': '#F5F5DC',
+    'Blue/White': 'linear-gradient(45deg, #007BFF 50%, #FFFFFF 50%)',
+    'Gold/Black': 'linear-gradient(45deg, #FFD700 50%, #000000 50%)',
+    'Camel': '#C19A6B',
+    'Gold': '#FFD700',
+    'Orange': '#FF8C00',
+    'Black/Orange': 'linear-gradient(45deg, #000000 50%, #FF8C00 50%)'
+  };
+
+  const getColorValue = (color) => {
+    return colorMap[color] || '#CCCCCC'; // Default gray if color not found
+  };
   
   // Filter states
   const [filters, setFilters] = useState({
@@ -339,11 +364,11 @@ const ShopPage = ({ wishlistItems, toggleWishlist }) => {
                       checked={filters.color.includes(color)}
                       onChange={() => handleColorChange(color)}
                     />
-                    <span 
+                    <span
                       className="color-swatch"
-                      style={{ 
-                        backgroundColor: color.toLowerCase(),
-                        border: color.toLowerCase() === 'white' ? '1px solid #e5e7eb' : 'none'
+                      style={{
+                        background: getColorValue(color),
+                        border: getColorValue(color) === '#FFFFFF' ? '1px solid #e5e7eb' : 'none'
                       }}
                     ></span>
                     {color}

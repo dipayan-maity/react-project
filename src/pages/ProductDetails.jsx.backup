@@ -1,0 +1,11 @@
+import React, { useState, useEffect } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
+import {
+  FaShoppingCart,
+  FaHeart,
+  FaRegHeart,
+  FaStar,
+  FaStarHalfAlt,
+  FaPlus,
+  FaMinus,
+  FaChevronRight,

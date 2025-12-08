@@ -1,13 +1,34 @@
 // gadgets.js
+import product1 from '../images/product-1.jpg';
+import product2 from '../images/product-2.jpg';
+import product3 from '../images/product-3.jpg';
+import product4 from '../images/product-4.jpg';
+import product5 from '../images/product-5.jpg';
+import product6 from '../images/product-6.jpg';
+import product7 from '../images/product-7.jpg';
+import product8 from '../images/product-8.jpg';
+import product9 from '../images/product-9.jpg';
+import product10 from '../images/product-10.jpg';
+import product11 from '../images/product-11.jpg';
+import product12 from '../images/product-12.jpg';
+import product13 from '../images/product-13.jpg';
+import product14 from '../images/product-14.jpg';
+import product15 from '../images/product-15.jpg';
+import product16 from '../images/product-16.jpg';
+import product17 from '../images/product-17.jpg';
+import product18 from '../images/product-18.jpg';
+import product19 from '../images/product-19.jpg';
+import product20 from '../images/product-20.jpg';
+
 export const gadgets = [
   // Headphones (4 products)
   {
     id: 1,
-    image: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60",
+    image: product1,
     gallery: [
-      "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60",
-      "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60",
-      "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60"
+      product1,
+      product1,
+      product1
     ],
     name: "Premium Wireless Headphones",
     price: 179.99,
@@ -31,10 +52,10 @@ export const gadgets = [
   },
   {
     id: 2,
-    image: "https://images.unsplash.com/photo-1484704849700-f032a568e944?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60",
+    image: product5,
     gallery: [
-      "https://images.unsplash.com/photo-1484704849700-f032a568e944?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60",
-      "https://images.unsplash.com/photo-1484704849700-f032a568e944?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60"
+      product5,
+      product5
     ],
     name: "Professional Studio Headphones",
     price: 249.99,
@@ -57,10 +78,10 @@ export const gadgets = [
   },
   {
     id: 3,
-    image: "https://images.unsplash.com/photo-1583394838336-acd977736f90?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60",
+    image: product6,
     gallery: [
-      "https://images.unsplash.com/photo-1583394838336-acd977736f90?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60",
-      "https://images.unsplash.com/photo-1583394838336-acd977736f90?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60"
+      product6,
+      product6
     ],
     name: "Wireless Sports Earbuds",
     price: 89.99,
@@ -83,10 +104,10 @@ export const gadgets = [
   },
   {
     id: 4,
-    image: "https://images.unsplash.com/photo-1599669454699-248893623440?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60",
+    image: product7,
     gallery: [
-      "https://images.unsplash.com/photo-1599669454699-248893623440?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60",
-      "https://images.unsplash.com/photo-1599669454699-248893623440?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60"
+      product7,
+      product7
     ],
     name: "RGB Gaming Headset",
     price: 129.99,
@@ -111,11 +132,11 @@ export const gadgets = [
   // Smart Watches (4 products)
   {
     id: 5,
-    image: "https://images.unsplash.com/photo-1546868871-7041f2a55e12?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60",
+    image: product8,
     gallery: [
-      "https://images.unsplash.com/photo-1546868871-7041f2a55e12?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60",
-      "https://images.unsplash.com/photo-1546868871-7041f2a55e12?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60",
-      "https://images.unsplash.com/photo-1546868871-7041f2a55e12?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60"
+      product8,
+      product8,
+      product8
     ],
     name: "Luxury Smart Watch Pro",
     price: 299.99,
@@ -138,10 +159,10 @@ export const gadgets = [
   },
   {
     id: 6,
-    image: "https://images.unsplash.com/photo-1434493652601-8dabae5c8e89?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60",
+    image: product6,
     gallery: [
-      "https://images.unsplash.com/photo-1434493652601-8dabae5c8e89?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60",
-      "https://images.unsplash.com/photo-1434493652601-8dabae5c8e89?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60"
+      product6,
+      product6
     ],
     name: "Advanced Fitness Tracker",
     price: 149.99,
@@ -164,10 +185,10 @@ export const gadgets = [
   },
   {
     id: 7,
-    image: "https://images.unsplash.com/photo-1523170335258-f5ed11844a49?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60",
+    image: product10,
     gallery: [
-      "https://images.unsplash.com/photo-1523170335258-f5ed11844a49?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60",
-      "https://images.unsplash.com/photo-1523170335258-f5ed11844a49?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60"
+      product10,
+      product10
     ],
     name: "Classic Edition Smart Watch",
     price: 249.99,
@@ -190,10 +211,10 @@ export const gadgets = [
   },
   {
     id: 8,
-    image: "https://images.unsplash.com/photo-1547996160-81dfd9c9b7c1?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60",
+    image: product11,
     gallery: [
-      "https://images.unsplash.com/photo-1547996160-81dfd9c9b7c1?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60",
-      "https://images.unsplash.com/photo-1547996160-81dfd9c9b7c1?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60"
+      product11,
+      product11
     ],
     name: "Rugged Sports Watch",
     price: 199.99,
@@ -218,11 +239,11 @@ export const gadgets = [
   // Dresses (4 products)
   {
     id: 9,
-    image: "https://images.unsplash.com/photo-1539008835657-9e8e9680c956?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60",
+    image: product12,
     gallery: [
-      "https://images.unsplash.com/photo-1539008835657-9e8e9680c956?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60",
-      "https://images.unsplash.com/photo-1539008835657-9e8e9680c956?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60",
-      "https://images.unsplash.com/photo-1539008835657-9e8e9680c956?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60"
+      product12,
+      product12,
+      product12
     ],
     name: "Elegant Evening Gown",
     price: 189.99,
@@ -246,10 +267,10 @@ export const gadgets = [
   },
   {
     id: 10,
-    image: "https://images.unsplash.com/photo-1595777457583-95e059d581b8?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60",
+    image: product13,
     gallery: [
-      "https://images.unsplash.com/photo-1595777457583-95e059d581b8?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60",
-      "https://images.unsplash.com/photo-1595777457583-95e059d581b8?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60"
+      product13,
+      product13
     ],
     name: "Classic Cocktail Dress",
     price: 129.99,
@@ -272,10 +293,10 @@ export const gadgets = [
   },
   {
     id: 11,
-    image: "https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60",
+    image: product14,
     gallery: [
-      "https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60",
-      "https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60"
+      product14,
+      product14
     ],
     name: "Floral Summer Dress",
     price: 79.99,
@@ -298,10 +319,10 @@ export const gadgets = [
   },
   {
     id: 12,
-    image: "https://images.unsplash.com/photo-1572804013309-59a88b7e92f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60",
+    image: product2,
     gallery: [
-      "https://images.unsplash.com/photo-1572804013309-59a88b7e92f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60",
-      "https://images.unsplash.com/photo-1572804013309-59a88b7e92f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60"
+      product2,
+      product2
     ],
     name: "Everyday Casual Dress",
     price: 59.99,
@@ -326,11 +347,11 @@ export const gadgets = [
   // Shoes (4 products)
   {
     id: 13,
-    image: "https://images.unsplash.com/photo-1543163521-1bf539c55dd2?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60",
+    image: product3,
     gallery: [
-      "https://images.unsplash.com/photo-1543163521-1bf539c55dd2?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60",
-      "https://images.unsplash.com/photo-1543163521-1bf539c55dd2?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60",
-      "https://images.unsplash.com/photo-1543163521-1bf539c55dd2?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60"
+      product3,
+      product3,
+      product3
     ],
     name: "Designer High Heels",
     price: 149.99,
@@ -358,10 +379,10 @@ export const gadgets = [
     price: 129.99,
     originalPrice: 159.99,
     onSale: true,
-    image: "https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60",
+    image: product15,
     gallery: [
-      "https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60",
-      "https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60"
+      product15,
+      product15
     ],
     description: "Professional running shoes with advanced cushioning technology and breathable mesh design.",
     category: "shoes",
@@ -384,10 +405,10 @@ export const gadgets = [
     price: 179.99,
     originalPrice: 229.99,
     onSale: true,
-    image: "https://images.unsplash.com/photo-1608256246200-53e635b5b65f?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60",
+    image: product16,
     gallery: [
-      "https://images.unsplash.com/photo-1608256246200-53e635b5b65f?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60",
-      "https://images.unsplash.com/photo-1608256246200-53e635b5b65f?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60"
+      product16,
+      product16
     ],
     description: "Handcrafted leather boots with weather-resistant finish and comfortable inner lining for cold seasons.",
     category: "shoes",
@@ -410,10 +431,10 @@ export const gadgets = [
     price: 49.99,
     originalPrice: 69.99,
     onSale: true,
-    image: "https://images.unsplash.com/photo-1560343090-f0409e92791a?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60",
+    image: product17,
     gallery: [
-      "https://images.unsplash.com/photo-1560343090-f0409e92791a?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60",
-      "https://images.unsplash.com/photo-1560343090-f0409e92791a?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60"
+      product17,
+      product17
     ],
     description: "Lightweight and comfortable sandals with ergonomic footbed, perfect for beach and casual wear.",
     category: "shoes",
@@ -439,11 +460,11 @@ export const gadgets = [
     featured: true,
     originalPrice: 199.99,
     onSale: true,
-    image: "https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60",
+    image: product4,
     gallery: [
-      "https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60",
-      "https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60",
-      "https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60"
+      product4,
+      product4,
+      product4
     ],
     description: "Handcrafted sterling silver necklace with genuine gemstone pendant and adjustable chain.",
     category: "accessories",
@@ -466,10 +487,10 @@ export const gadgets = [
     price: 299.99,
     originalPrice: 399.99,
     onSale: true,
-    image: "https://images.unsplash.com/photo-1584917865442-de89df76afd3?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60",
+    image: product18,
     gallery: [
-      "https://images.unsplash.com/photo-1584917865442-de89df76afd3?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60",
-      "https://images.unsplash.com/photo-1584917865442-de89df76afd3?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60"
+      product18,
+      product18
     ],
     description: "Premium leather handbag with multiple compartments, gold-tone hardware, and detachable strap.",
     category: "accessories",
@@ -492,10 +513,10 @@ export const gadgets = [
     price: 89.99,
     originalPrice: 119.99,
     onSale: true,
-    image: "https://images.unsplash.com/photo-1506634572416-48cdfe530110?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60",
+    image: product19,
     gallery: [
-      "https://images.unsplash.com/photo-1506634572416-48cdfe530110?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60",
-      "https://images.unsplash.com/photo-1506634572416-48cdfe530110?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60"
+      product19,
+      product19
     ],
     description: "Classic aviator sunglasses with polarized lenses, UV400 protection, and lightweight metal frame.",
     category: "accessories",
@@ -518,10 +539,10 @@ export const gadgets = [
     price: 39.99,
     originalPrice: 59.99,
     onSale: true,
-    image: "https://images.unsplash.com/photo-1582142306909-195724d1a6e3?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60",
+    image: product20,
     gallery: [
-      "https://images.unsplash.com/photo-1582142306909-195724d1a6e3?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60",
-      "https://images.unsplash.com/photo-1582142306909-195724d1a6e3?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60"
+      product20,
+      product20
     ],
     description: "Premium leather replacement band compatible with most smartwatches, available in multiple colors.",
     category: "accessories",

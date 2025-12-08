@@ -9,4 +9,4 @@
 - [x] Fix routing for GitHub Pages
 - [x] Fix Font Awesome icons in Header and FeaturedProducts components
 - [x] Rebuild and redeploy
-- [ ] Enable GitHub Pages in repository settings
+- [x] Enable GitHub Pages in repository settings

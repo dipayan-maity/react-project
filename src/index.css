@@ -7928,13 +7928,10 @@ textarea.form-control {
   font-weight: 500;
 }
 
-.color-options {
-  display: flex;
-  gap: 12px;
-}
 
+ 
 .color-option {
-  width: 40px;
+  width: 153px;
   height: 40px;
   border-radius: 50%;
   border: 3px solid transparent;

@@ -68,14 +68,14 @@ const FeaturedProducts = ({ products, wishlistItems, toggleWishlist, viewProduct
                        onClick={() => toggleWishlist(product)}>
                     <i className="fa-solid fa-heart"></i>
                   </div>
-                  <div className="premium-action-btn" title="Quick View" onClick={() => viewProduct(product.id)}>
+                  <div className="premium-action-btn" title="Quick View2" onClick={() => viewProduct(product.id)}>
                     <i className="fa-solid fa-eye"></i>
                   </div>
                 </div>
               </div>
 
               <div className="premium-product-content">
-                <h3>{product.name}</h3>
+                <h3 onClick={() => viewProduct(product.id)} style={{ cursor: 'pointer' }}>{product.name}</h3>
                 <p>{product.description}</p>
                 
                 <div className="premium-product-rating">
