@@ -14144,3 +14144,6 @@ textarea.form-control {
     padding: 1.5rem;
   }
 }
+
+
+.color-options{display:flex}
